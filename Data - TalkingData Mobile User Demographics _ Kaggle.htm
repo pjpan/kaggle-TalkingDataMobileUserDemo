@@ -1,0 +1,789 @@
+
+
+
+<!DOCTYPE html>
+
+<!--[if lt IE 7 ]><html class="ie ie6 lte7 lte8 lte9"><![endif]-->
+<!--[if IE 7 ]><html class="ie ie7 lte7 lte8 lte9"><![endif]-->
+<!--[if IE 8 ]><html class="ie ie8 lte8 lte9"><![endif]-->
+<!--[if IE 9 ]><html class="ie ie9 lte9"><![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--><html ><!--<![endif]-->
+
+<head>
+    <link href='//fonts.googleapis.com/css?family=Merriweather:400,700|Open+Sans:300,400italic,700italic,400,700' rel='stylesheet' type='text/css'> 
+
+    
+    <link rel="stylesheet" href="/content/v/1fb55cec3f8f/shared/css/font-awesome.min.css">
+
+    
+    
+    <title>Data - TalkingData Mobile User Demographics | Kaggle</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="robots" content="index, follow" />
+    <link href="/content/v/4e3f994e938b/kaggle/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+
+    
+        <meta name="keywords" content="Kaggle, data science, datasets, public data, crowdsourced analytics, competitions, tutorials, scripts, Python, R, InClass, jobs board" />
+            <meta name="description" content="Kaggle is your home for data science. Learn new skills, build your career, collaborate with other data scientists, and compete in world class machine learning challenges." />
+
+            <link rel="stylesheet" href="/content/v/1fc20364f0a7/shared/css/base.less" type="text/css" />
+        <link rel="stylesheet" href="/content/v/e1cd6968c0d2/kaggle/css/kaggle-site.less" type="text/css" />
+
+        <script type="text/javascript" src="/content/v/47b68dce8cb6/shared/js/jquery-1.7.2.min.js"></script>
+            <script type="text/javascript" src="/content/v/7846b5904b60/shared/js/jquery-ui-1.9.2.min.js"></script>
+
+    
+        <script type="text/javascript" src="/content/v/a60ecf3c5c7d/shared/js/kaggle.min.js"></script>
+        <script type="text/javascript">
+            
+            Kaggle.Current.siteId = 1;
+                Kaggle.Current.competitionId = 5340;
+                            Kaggle.Current.userId = 417133;
+        </script>
+
+    
+    <!--[if (gte IE 6)&(lte IE 8)]>
+        <script type="text/javascript" src="/content/v/f1f17fea7cee/shared/js/ie/selectivizr.min.js"></script>
+    <![endif]-->
+
+    
+                                            <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+                                                                        
+                    <link rel="apple-touch-icon" href="/content/v/1e4cdaa83f46/kaggle/img/apple-touch-icon.png" />
+
+
+    
+    <!--[if lt IE 9]>
+        <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    
+    
+    
+
+
+    <script>
+         window.intercomSettings = {
+            app_id: "koj6gxx6",
+            name: "wpppj",
+            email: "wpppj@sohu.com",
+            created_at: 1441983161,
+            user_hash: "7090295c7d92762d6161894d104cab493f1f68d46169d859f210d92abc0d0fb5",
+            "last_visit_date_at": 1469956104,  
+            "is_activated": true,
+            "is_locked_out": false,
+            "points": 4155.2001953125,
+             "ranking": 1810,
+             "tier": 4,
+             "performance_tier": 1,
+             "highest_ranking": 1616,
+             "user_name": "wpppj001",
+             "display_name": "wpppj",
+             "is_admin": false,
+             "experiment_group": 1,
+             "newsletter_subscriber": true,
+             "block_emails": false,
+             "delete_account_reason": ""
+          };
+    </script>
+<script>(function(){var w=window;var ic=w.Intercom;if(typeof ic==="function"){ic('reattach_activator');ic('update',intercomSettings);}else{var d=document;var i=function(){i.c(arguments)};i.q=[];i.c=function(args){i.q.push(args)};w.Intercom=i;function l(){var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://widget.intercom.io/widget/koj6gxx6';var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);}if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})()</script>
+</head>
+<body class="logged-in    kaggle">
+    <div id="watermark1" class=""></div>
+    <div id="watermark2" class=""></div>
+    
+    <div id="wrap"><!-- needed for sticky footer -->
+
+
+<div id="menu-open-overlay"></div>
+
+<div id="header2" class="">
+    <div id="header2-inside" class=>
+        <a id="logo" href="/"><img alt="Kaggle" height="86" src="/content/v/9da25a3f126b/kaggle/img/site-logo.png" width="240" /></a>
+
+            <ul id="header-ul">
+                <li>
+  <a href="/solutions/competitions">Host</a>
+</li>
+<li>
+  <a href="/competitions">Competitions</a>
+</li>
+<li>
+  <a href="/datasets">Datasets</a>
+</li>
+<li>
+  <a href="/kernels">Kernels</a>
+</li>
+<li>
+  <a href="/jobs">Jobs</a>
+</li>
+<li>
+<a href="">Community &#9662;</a>
+<ul>
+  <li><a href='/users'>User Rankings</a></li>
+  <li><a href='/forums'>Forum</a></li>
+  <li><a href="http://blog.kaggle.com" target="_blank">Blog</a></li>
+  <li><a href='/Wiki'>Wiki</a></li>
+</ul>
+</li><!-- <script>
+  $(function(){
+    if (!$('body.logged-in').length) {
+      $('a.logged-in-only').hide().parent().next().find('a').css('padding-top','10px');
+    }
+  });
+</script> -->
+            </ul>
+
+        <script>
+            jQuery(function () {
+                jQuery('#header-ul li:has(ul) > a').click(function (e) {
+                    e.preventDefault();
+
+                    jQuery('#header-ul li').not(jQuery(this).parent()).find('ul').removeClass('open');
+                    jQuery(this).parent().find('ul').toggleClass('open');
+                    jQuery('#menu-open-overlay').show();
+                });
+
+                jQuery('#menu-open-overlay').click(function () {
+                    jQuery('#header-ul ul').removeClass('open');
+                    jQuery('#top-bar-signin').hide();
+                    jQuery(this).hide();
+                });
+
+            });
+        </script>
+
+        <ul id="header-control">
+                <li id="header-account"><a class="profilelink" href="/wpppj001" title="View my profile">wpppj</a></li>
+                <li id="header-logout"><a href="/account/logoff" class="logout-link">Logout</a></li>
+        </ul>
+    </div>
+</div>
+
+
+
+
+
+
+
+        
+
+        <!-- header-inside and header -->
+            <div id="main">
+                
+
+
+
+
+
+<div id='competition' @Html.Attr('class', 'prospecting', competition.InProspectingPhase).Add(isPreview ? 'preview' : '')>                <header id="comp-header" >
+                    <a href="/c/talkingdata-mobile-user-demographics"><img id="comp-image" src="https://kaggle2.blob.core.windows.net/competitions/kaggle/5340/logos/front_page.png" alt="" /></a>
+                    <div id="comp-header-details">
+                        <h2>
+
+                    $25,000 
+                        &bull; <a href="/c/talkingdata-mobile-user-demographics/leaderboard">916 teams</a>
+                </h2>
+                <h1><a href="/c/talkingdata-mobile-user-demographics">TalkingData Mobile User Demographics</a>
+                        </h1>
+
+                        
+
+                            <div id="comp-header-stats" >
+                                    <div id="comp-header-stats-progress-section">
+                                        <div id="comp-header-stats-progress">
+                                            <div id="comp-header-stats-teams" style="width:35%">
+                                            </div>
+                                        </div>
+                                        <div id="comp-progress-start"></div>
+                                        <div id="comp-progress-end" ></div>
+
+
+
+                                            <div class="comp-progress-milestone prohibit-entrants" style="left:87.58246%;">
+
+                                                <div class="circle" style="background:blue"></div>
+                                                <div class="milestone-key">Merger and 1st Submission Deadline</div>
+
+                                                <div class="milestone-caption">
+                                                    <h2>
+                                                        <strong>29 Aug</strong><br />
+                                                        29 days
+                                                    </h2>
+                                                    <h3>
+                                                        Deadline for new entry &amp; team mergers
+                                                    </h3>
+                                                </div>
+
+                                            </div>
+
+
+                                    </div>
+
+                                <div id="comp-header-stats-start">
+                                    Mon 11 Jul 2016
+                                </div>
+                                <div id="comp-header-stats-end">
+                                    Mon 5 Sep 2016
+                                        <span class="to-go-note">
+                                            (36 days to go)
+                                        </span>
+                                </div>
+                            </div>
+                    </div>
+                </header>
+                <script type="text/javascript">
+                    jQuery(function ($) {
+                        $('#comp-header-details h1').textfill({ maxFontPixels: 26, innerTag: 'a' });
+                    });
+                </script>
+            <div class="comp-sidebar">
+                
+
+
+<div class="_panel" id="competition-dashboard">
+    <header>
+        <h1>Dashboard</h1>
+    </header>
+    <ul id="competition-dashboard-dropdown">
+        <li class="cd-home">
+            <a href="/c/talkingdata-mobile-user-demographics">Home</a>
+            <ul>
+                <li class="cd-data"><a href="/c/talkingdata-mobile-user-demographics/data">Data</a></li>
+
+                    <li class="cd-submit submission-link">
+                        <a class="comp-link" href="/c/talkingdata-mobile-user-demographics/submit">Make a submission</a>
+                    </li>
+            </ul>
+        </li>
+
+        <li class="cd-info">
+            <a id="open-info">Information</a>
+            <ul id="pages-flyout">
+                    <li>
+<a href="/c/talkingdata-mobile-user-demographics">Description</a>                    </li>
+                    <li>
+<a href="/c/talkingdata-mobile-user-demographics/details/evaluation">Evaluation</a>                    </li>
+                    <li>
+<a href="/c/talkingdata-mobile-user-demographics/rules">Rules</a>                    </li>
+                    <li>
+<a href="/c/talkingdata-mobile-user-demographics/details/prizes">Prizes</a>                    </li>
+                    <li>
+<a href="/c/talkingdata-mobile-user-demographics/details/graphlab-create-license">GraphLab Create License</a>                    </li>
+                    <li>
+<a href="/c/talkingdata-mobile-user-demographics/details/timeline">Timeline</a>                    </li>
+
+            </ul>
+        </li>
+
+            <li class="cd-forum"><a href="/c/talkingdata-mobile-user-demographics/forums">Forum</a></li>
+
+            <li class="cd-scripts">
+                <a class="comp-link" href="/c/talkingdata-mobile-user-demographics/kernels">Kernels</a>
+                <ul class="flyout">
+                    <li><a href="/c/talkingdata-mobile-user-demographics/kernels/scripts/new">New Script</a></li>
+                    <li><a href="/c/talkingdata-mobile-user-demographics/kernels/notebooks/new">New Notebook</a></li>
+                </ul>
+            </li>
+
+            <li class="cd-leaderboard">
+                <a href="/c/talkingdata-mobile-user-demographics/leaderboard">Leaderboard</a>
+            </li>
+
+
+                <li class="cd-team">
+                    <a href="/c/talkingdata-mobile-user-demographics/team">My Team</a>
+                </li>
+                <li class="cd-submissions"><a href="/c/talkingdata-mobile-user-demographics/submissions">My Submissions</a></li>
+
+
+    </ul>
+</div>
+
+    <script type="text/javascript">
+        $(function () {
+            $(".cd-data").addClass("selected");
+        });
+    </script>
+
+                
+                        <div id="partial-mini-leaderboard"></div>
+                        <script type="text/javascript">
+                            jQuery(function ($) {
+                                $("#partial-mini-leaderboard").load("/c/5340/partial/mini-leaderboard");
+                            });
+                        </script>
+                        <div id="partial-mini-scripts"></div>
+                        <script type="text/javascript">
+                            jQuery(function ($) {
+                                $("#partial-mini-scripts").load("/c/5340/kernels/hot/widget");
+                            });
+                        </script>
+
+
+    <div class="widget _panel" id="compside-discussions">
+        <header>
+            <h1><a href="/c/talkingdata-mobile-user-demographics/forums">Forum (130 topics)</a></h1>
+        </header>
+
+        <ul>
+                <li>
+                    <div class="post-title"><a href="https://www.kaggle.com/mrisdal/talkingdata-mobile-user-demographics/voronoi-diagrams-locations-by-brand/comments#129564">Voronoi diagrams: Locations by brand</a></div>
+                    <div class="post-time">1 minute ago</div>
+                </li>
+                <li>
+                    <div class="post-title"><a href="/c/talkingdata-mobile-user-demographics/forums/t/22451/vismio-gender-age-phone-brand-visualisaition/129561#post129561">Vismio gender/age/phone/brand Visualisaition</a></div>
+                    <div class="post-time">39 minutes ago</div>
+                </li>
+                <li>
+                    <div class="post-title"><a href="/c/talkingdata-mobile-user-demographics/forums/t/22567/neural-network-for-sparse-matrices/129557#post129557">Neural network for sparse matrices</a></div>
+                    <div class="post-time">3 hours ago</div>
+                </li>
+                <li>
+                    <div class="post-title"><a href="/c/talkingdata-mobile-user-demographics/forums/t/22582/is-this-dataset-good-for-publishing-academic-papers/129553#post129553">Is this dataset good for publishing academic papers?</a></div>
+                    <div class="post-time">6 hours ago</div>
+                </li>
+                <li>
+                    <div class="post-title"><a href="/c/talkingdata-mobile-user-demographics/forums/t/22570/what-is-the-correct-approach-for-cross-validation/129549#post129549">What is the correct approach for Cross Validation</a></div>
+                    <div class="post-time">8 hours ago</div>
+                </li>
+                <li>
+                    <div class="post-title"><a href="/c/talkingdata-mobile-user-demographics/forums/t/22410/best-single-model/129548#post129548">Best single model?</a></div>
+                    <div class="post-time">9 hours ago</div>
+                </li>
+        </ul>
+
+    </div> 
+                    <div id="partial-stats-ticker"></div>
+                    <script type="text/javascript">
+                        jQuery(function ($) {
+                            $("#partial-stats-ticker").load("/c/5340/partial/stats");
+                        });
+                    </script>
+            </div>
+    <div class="data---talkingdata-mobile-user-demographics-page comp-content with-sidebar _panel">
+            <header class='data'>
+                <div class="simple-steps">
+                    <a class="info" href="/c/talkingdata-mobile-user-demographics">Competition Details</a>
+                    &raquo;
+                    <a class="data" href="/c/talkingdata-mobile-user-demographics/data">Get the Data</a>
+                        &raquo;
+                        <a class="submit" href="/c/talkingdata-mobile-user-demographics/submit">Make a submission</a>
+                </div>
+                    </header>
+                <div class="comp-content-inside">
+                    <div id="competition-intro">
+
+                    </div>
+
+
+
+
+
+<h3>Data Files</h3>
+
+
+
+    <table id="data-files" class="nicetable full roomy align-top border">   
+        <thead>
+            <tr>
+                <th colspan="2">File Name</th> 
+                <th>Available Formats</th>         
+            </tr> 
+        </thead>
+
+            <tbody  >
+                <tr>
+
+                    <td class="file-name" colspan="2" rowspan="1">gender_age_test.csv</td>
+                    <td>
+<a href="/c/talkingdata-mobile-user-demographics/download/gender_age_test.csv.zip" name="gender_age_test.csv.zip" onclick="window.Intercom(&#39;trackEvent&#39;,&#39;download_compdata&#39;,{&#39;comp_id&#39;: 5340});">.zip (1.05 mb)</a>                    </td>
+                </tr>
+
+            </tbody>
+            <tbody  >
+                <tr>
+
+                    <td class="file-name" colspan="2" rowspan="1">app_labels.csv</td>
+                    <td>
+<a href="/c/talkingdata-mobile-user-demographics/download/app_labels.csv.zip" name="app_labels.csv.zip" onclick="window.Intercom(&#39;trackEvent&#39;,&#39;download_compdata&#39;,{&#39;comp_id&#39;: 5340});">.zip (4.04 mb)</a>                    </td>
+                </tr>
+
+            </tbody>
+            <tbody  >
+                <tr>
+
+                    <td class="file-name" colspan="2" rowspan="1">label_categories.csv</td>
+                    <td>
+<a href="/c/talkingdata-mobile-user-demographics/download/label_categories.csv.zip" name="label_categories.csv.zip" onclick="window.Intercom(&#39;trackEvent&#39;,&#39;download_compdata&#39;,{&#39;comp_id&#39;: 5340});">.zip (7.67 kb)</a>                    </td>
+                </tr>
+
+            </tbody>
+            <tbody  >
+                <tr>
+
+                    <td class="file-name" colspan="2" rowspan="1">phone_brand_device_model.csv</td>
+                    <td>
+<a href="/c/talkingdata-mobile-user-demographics/download/phone_brand_device_model.csv.zip" name="phone_brand_device_model.csv.zip" onclick="window.Intercom(&#39;trackEvent&#39;,&#39;download_compdata&#39;,{&#39;comp_id&#39;: 5340});">.zip (2.42 mb)</a>                    </td>
+                </tr>
+
+            </tbody>
+            <tbody  >
+                <tr>
+
+                    <td class="file-name" colspan="2" rowspan="1">sample_submission.csv</td>
+                    <td>
+<a href="/c/talkingdata-mobile-user-demographics/download/sample_submission.csv.zip" name="sample_submission.csv.zip" onclick="window.Intercom(&#39;trackEvent&#39;,&#39;download_compdata&#39;,{&#39;comp_id&#39;: 5340});">.zip (1.32 mb)</a>                    </td>
+                </tr>
+
+            </tbody>
+            <tbody  >
+                <tr>
+
+                    <td class="file-name" colspan="2" rowspan="1">events.csv</td>
+                    <td>
+<a href="/c/talkingdata-mobile-user-demographics/download/events.csv.zip" name="events.csv.zip" onclick="window.Intercom(&#39;trackEvent&#39;,&#39;download_compdata&#39;,{&#39;comp_id&#39;: 5340});">.zip (62.24 mb)</a>                    </td>
+                </tr>
+
+            </tbody>
+            <tbody  >
+                <tr>
+
+                    <td class="file-name" colspan="2" rowspan="1">app_events.csv</td>
+                    <td>
+<a href="/c/talkingdata-mobile-user-demographics/download/app_events.csv.zip" name="app_events.csv.zip" onclick="window.Intercom(&#39;trackEvent&#39;,&#39;download_compdata&#39;,{&#39;comp_id&#39;: 5340});">.zip (211.27 mb)</a>                    </td>
+                </tr>
+
+            </tbody>
+            <tbody  >
+                <tr>
+
+                    <td class="file-name" colspan="2" rowspan="1">gender_age_train.csv</td>
+                    <td>
+<a href="/c/talkingdata-mobile-user-demographics/download/gender_age_train.csv.zip" name="gender_age_train.csv.zip" onclick="window.Intercom(&#39;trackEvent&#39;,&#39;download_compdata&#39;,{&#39;comp_id&#39;: 5340});">.zip (891.47 kb)</a>                    </td>
+                </tr>
+
+            </tbody>
+    </table>
+    <script type="text/javascript">
+        $(function () {
+
+            // Decorate obselete files
+            $('#data-files a.obsolete').each(function () {
+                var obsoleteMsg = "Superseded by newer version";
+                if ($(this).data('msg')) {
+                    obsoleteMsg = $(this).attr('data-msg');
+                }
+
+                $(this).attr('title', obsoleteMsg);
+            });
+
+            // If we have a search parameter, try to immediately download the
+            // file of that name.
+            var search = this.location.search;
+            if (search.length) {
+                var selector = "#data-files a[name=\"" + search.substr(1) + "\"]";
+                var fileLink = $(selector);
+                if (fileLink.length == 1) {
+                        this.location = fileLink.prop("href");
+                }
+            }
+        });
+    </script>
+
+<div class="cms-page">
+    
+
+    <p>In this competition, you are going to predict the demographics of a user (gender and age) based on their app download and usage behaviors. </p>
+<p>The Data is collected from TalkingData SDK integrated within mobile apps TalkingData serves under the service term between TalkingData and mobile app developers. Full recognition and consent from individual user of those apps have been obtained, and appropriate anonymization have been performed to protect privacy. Due to confidentiality, we won't provide details on how the gender and age data was obtained. Please treat them as accurate ground truth for prediction. </p>
+<p>The data schema can be represented in the following chart:</p>
+<div class="mxgraph" style="max-width: 100%;" align="center" data-mxgraph="{&quot;highlight&quot;:&quot;#0000ff&quot;,&quot;nav&quot;:true,&quot;edit&quot;:&quot;_blank&quot;,&quot;xml&quot;:&quot;&lt;mxfile userAgent=\&quot;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36\&quot; version=\&quot;5.5.2.4\&quot; editor=\&quot;www.draw.io\&quot; type=\&quot;device\&quot;&gt;&lt;diagram&gt;7VtRc+I2EP41PLYDGAj32NBc+5DO3DQPbZ8YYQtbPdliZBGS+/W3klbYxiZ2Dht6PQEz2KuVJe33aXct2aNglb78Jsku+UNElI+m4+hlFPw6mk4ns2AGf1ryaiWLDyiIJYtQqRA8sS8UhWOU7llE84qiEoIrtqsKQ5FlNFQVGZFSHKpqW8Grre5I7FosBE8h4XXpXyxSiZUup4tC/jtlceJaniw+2JINCT/HUuwzbG80DbbmY4tT4q6FA80TEolDSRQ8gF2lEHBlfZS+rCjXtnVms/U+nik99lvSDPvWUiFaBJswoFE0o9Pt/Ce8wDPhezRFTLOIyrU2mO2xenVWyg8s5SSDs/tEpRyEEzjcikw9odIYzsOE8eiRvIq97lGuwELu7D4Rkn0BfeIqQ7FUyAewNlyNcb4SXEjTZEDH+lup+aSviG1JmkPdT274+opW9EhyLTD9EZyTXc42podaJSUyZtm9UEqkqOSG9rHaPGIJ5Q43Xb9udGdGKhV1k+KILswaKlKq5CuouNIxEgInzAT5dCjYNwlQJSkzL0BFgoyPj5cuUIcDBL4bCaDmCQki+sxCuoYKpxyA8RkgC/xzJcVn6oyWCcOPMowoynckZFn8SLd6LLNC8icOT4sOCVP0CeS6uQM4G5AJMOuWG+snLIpoplEWiihiIdX47QTLlDHJ/B5+YLnV+Of5aA5dXsE5gOHO4afVpVqJDLpOoB5Uo8CXA9WcaUL3zKRpRxvRdX6kDV2n1ye4QQ3c0XTB9UDB/Bkcx/rYznpXAm2UCz0J+iDBHKfZLUiA0biFBMbnewYMxoC75e0YMO/mBiCV2XkODMiByRjn4i1IgJcskYA+w9Dyq2d6yx8n0wu+NdNbuPubHglw18kLGFKY5M87gq6OwE2t7jnhDYMBNt1Cg9JNgOfBYDyY3zAeoCtq4YFiKYyepD4xGJIHS8T8Fjxwy3AtROAii5naR/4uYUgiTMZdVwvQc/TKhPqCYCMTiPJEGJwIDvRbuASXnpSIQHa7NScbyq9/v/ADrQzPXCBwLGi6YXAOu8yCuyFWhrtlCJoZPk18jzM4Tq+L1pCbaDDIGnLH/EA7B0+EgYnQtI58NSLUt4os6CFRNAZHDJu4PjYMFxvuqrEByNAtQxgiNgTddpZanYIVb/Tmk3cT59zEceJ9H3uO3fab0GlAU54a16TGNXci6wFDJ4t+26FDqKgB2hA9Om87TMcN683uqaTKvsMMIbsE9W6hwe8zNM/2FuANPu/aV2jCuRe/3+2+wN8e9o5y067BYCh3WxNk+ZrBeAnn1GPdJ9ZNOwODYV2P12ewJqFiz34BuE+gG1f+B0O6HqN3CZh8vZEki9a4+ZvaR719njZUnnay2tt4R+/u+itp2gTj/EUc6PZUmH8Q4Ntmu51i78rUmqDuZbbXH/1qQrrkATzWfWLdlK8NhnW3p7yqHt6D3R/YTQlbI9g9bOC7BZYSSDSCd5vwFEaaiFhkhD8UUrAfvLAEWbq1XglN+sLU36Xjf7QKWA7OMuiYLtI1zElRZmL3L/o1rBLeWqaD6LFKdKIBklL5v1SpV4z/ZK+ERv7Y90chgAqlkKuH+HbABYuIvTREKt2oQqdiem4nxqyR10GVVD/tAKlu5aWzSyBD2K8GmSn67iBrfnS1jOCZWdg/YBiohwbsOwAFE8a35pEx1gWomKowRqJrOQX08MWVP2lBkUZPFyd59MIG0uN7kC36y4o6HNgOFPQ4jqQbY3C/zTPmzLuG/3kCze2cvxF/3G5Mv/wxbPg/RfUzO9Jvkcta9trsmtXck80BztHrVH+yrOi/l19wWrxibtWL9/iDh68=&lt;/diagram&gt;&lt;/mxfile&gt;&quot;}"></div>
+<h2>File descriptions</h2>
+<ul>
+<li><strong>gender_age_train.csv, gender_age_test.csv</strong> - the training and test set</li>
+<ul>
+<li>group:<strong> this is the target variable you are going to predict</strong></li>
+</ul>
+<li><strong>events.csv, app_events.csv</strong> - when a user uses TalkingData SDK, the event gets logged in this data. Each event has an event id, location (lat/long), and the event corresponds to a list of apps in app_events.</li>
+<ul>
+<li>timestamp: when the user is using an app with TalkingData SDK</li>
+</ul>
+<li><strong>app_labels.csv</strong> - apps and their labels, the label_id's can be used to join with label_categories</li>
+<li><strong>label_categories.csv</strong> - apps' labels and their categories in text</li>
+<li><strong>phone_brand_device_model.csv</strong> - device ids, brand, and models</li>
+<ul>
+<li>phone_brand: note that the brands are in Chinese (translation courtesy of user <a href="https://www.kaggle.com/zhaohao10">fromandto</a>) </li>
+<ul>
+<li>
+<p>三星 samsung</p>
+</li>
+<li>
+<p>天语 Ktouch</p>
+</li>
+<li>
+<p>海信 hisense</p>
+</li>
+<li>
+<p>联想 lenovo</p>
+</li>
+<li>
+<p>欧比 obi</p>
+</li>
+<li>
+<p>爱派尔 ipair</p>
+</li>
+<li>
+<p>努比亚 nubia</p>
+</li>
+<li>
+<p>优米 youmi</p>
+</li>
+<li>
+<p>朵唯 dowe</p>
+</li>
+<li>
+<p>黑米 heymi</p>
+</li>
+<li>
+<p>锤子 hammer</p>
+</li>
+<li>
+<p>酷比魔方 koobee</p>
+</li>
+<li>
+<p>美图 meitu</p>
+</li>
+<li>
+<p>尼比鲁 nibilu</p>
+</li>
+<li>
+<p>一加 oneplus</p>
+</li>
+<li>
+<p>优购 yougo</p>
+</li>
+<li>
+<p>诺基亚 nokia</p>
+</li>
+<li>
+<p>糖葫芦 candy</p>
+</li>
+<li>
+<p>中国移动 ccmc</p>
+</li>
+<li>
+<p>语信 yuxin</p>
+</li>
+<li>
+<p>基伍 kiwu</p>
+</li>
+<li>
+<p>青橙 greeno</p>
+</li>
+<li>
+<p>华硕 asus</p>
+</li>
+<li>
+<p>夏新 panosonic</p>
+</li>
+<li>
+<p>维图 weitu</p>
+</li>
+<li>
+<p>艾优尼 aiyouni</p>
+</li>
+<li>
+<p>摩托罗拉 moto</p>
+</li>
+<li>
+<p>乡米 xiangmi</p>
+</li>
+<li>
+<p>米奇 micky</p>
+</li>
+<li>
+<p>大可乐 bigcola</p>
+</li>
+<li>
+<p>沃普丰 wpf</p>
+</li>
+<li>
+<p>神舟 hasse</p>
+</li>
+<li>
+<p>摩乐 mole</p>
+</li>
+<li>
+<p>飞秒 fs</p>
+</li>
+<li>
+<p>米歌 mige</p>
+</li>
+<li>
+<p>富可视 fks</p>
+</li>
+<li>
+<p>德赛 desci</p>
+</li>
+<li>
+<p>梦米 mengmi</p>
+</li>
+<li>
+<p>乐视 lshi</p>
+</li>
+<li>
+<p>小杨树 smallt</p>
+</li>
+<li>
+<p>纽曼 newman</p>
+</li>
+<li>
+<p>邦华 banghua</p>
+</li>
+<li>
+<p>E派 epai</p>
+</li>
+<li>
+<p>易派 epai</p>
+</li>
+<li>
+<p>普耐尔 pner</p>
+</li>
+<li>
+<p>欧新 ouxin</p>
+</li>
+<li>
+<p>西米 ximi</p>
+</li>
+<li>
+<p>海尔 haier</p>
+</li>
+<li>
+<p>波导 bodao</p>
+</li>
+<li>
+<p>糯米 nuomi</p>
+</li>
+<li>
+<p>唯米 weimi</p>
+</li>
+<li>
+<p>酷珀 kupo</p>
+</li>
+<li>
+<p>谷歌 google</p>
+</li>
+<li>
+<p>昂达 ada</p>
+</li>
+<li>
+<p>聆韵 lingyun</p>
+<strong style="font-size: 1em; line-height: 1.5em;">sample_submission.csv</strong><span style="font-size: 1em; line-height: 1.5em;"> - a sample submission file in the correct format</span></li>
+</ul>
+</ul>
+</ul>
+<script src="https://www.draw.io/js/viewer.min.js"></script>
+</div>
+
+                </div>
+            </div>  
+        </div>
+    
+
+
+            </div>
+    </div> <!-- wrap -->
+    
+        <div id="footer">
+            <div id="footer-inside">
+                <div id="footer-social">
+                        <div id="social-links">
+            <a class="twitter" href="http://www.twitter.com/kaggle" title="Follow Kaggle on Twitter"></a>     
+                    <a class="facebook" href="http://www.facebook.com/kaggle" title="Follow Kaggle on Facebook"></a>           
+                    <a class="linkedin" href="http://www.linkedin.com/companies/kaggle" title="Follow Kaggle on LinkedIn"></a>        
+    </div><!-- social-links -->
+
+                </div>
+                <div id="footer-copyright">
+                    
+
+
+&copy; 2016 Kaggle Inc                </div>
+                <div id="footer-links">
+                    <a href="/team">Our Team</a>
+<a href="/careers">Careers</a>
+<a href="/terms">Terms</a>
+<a href="/privacy">Privacy</a> 
+<!--<a href="/Home/ContactPress">Press</a>-->
+<a href="/Home/contact">Contact/Support</a>
+                </div> <!-- footer-links -->
+            </div> <!-- footer-inside -->
+        </div> <!--footer-->
+
+        <script type="text/x-mathjax-config">
+            MathJax.Hub.Config({
+                "HTML-CSS": {
+                    preferredFont: "TeX",
+                    availableFonts: ["STIX","TeX"],
+                    linebreaks: {
+                        automatic: true
+                    },
+                    EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+                },
+                tex2jax: {
+                    inlineMath: [ ["\\\\(","\\\\)"] ],
+                    displayMath: [ ["$$","$$"], ["\\[", "\\]"] ],
+                    processEscapes: true,
+                    ignoreClass: "tex2jax_ignore|dno"
+                },
+                TeX: {
+                    noUndefined: {
+                        attributes: {
+                            mathcolor: "red",
+                            mathbackground: "#FFEEEE",
+                            mathsize: "90%"
+                        }
+                    }
+                },
+                Macros: { 
+                    href: "{}" 
+                },
+                messageStyle: "none"
+            });
+        </script>
+        
+        <script type="text/javascript">
+            var _gaq = _gaq || [];
+            _gaq.push(['_setAccount', 'UA-12629138-1']);
+            _gaq.push(['_trackPageview']);
+            _gaq.push(['_trackPageLoadTime']);
+            _gaq.push(['_setCustomVar', 1, 'usertype', 'registered', 2]);
+                _gaq.push(['_setCustomVar', 2, 'userid', '417133', 2]);
+            (function () {
+                var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+            })();
+        </script>
+        <script type="text/javascript">
+            /**
+        * Function that tracks a click on an outbound link in Google Analytics.
+        * This function takes a valid URL string as an argument, and uses that URL string
+        * as the event label.
+        * See: https://support.google.com/analytics/answer/1136920?hl=en
+        */
+            var trackOutboundLink = function(url) {
+                ga('send', 'event', 'outbound', 'click', url, {'hitCallback':
+                        function () {
+                            document.location = url;
+                        }
+                });
+            }
+        </script>
+
+
+    
+
+    <!-- Cheers, RD00155D488DD7p. -->
+</body>
+</html>
