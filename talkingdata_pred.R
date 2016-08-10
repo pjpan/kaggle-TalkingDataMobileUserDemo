@@ -1,7 +1,8 @@
 library(xgboost)
-library(mxnet)
 library(dplyr)
 library(data.table)
+library(plotly)
+library(maps)
 
 # app_events;
 cat("load data")
@@ -23,6 +24,15 @@ gc()
 # app_label_detail the same app_id has tow label_id
 head(app_labels_detail, 1000)
 
+#combine train & test data
+gender_age_test$gender <- NA
+gender_age_test$age <- NA
+gender_age_test$group <- NA
+gender_age_test$type <- "test"
+gender_age_train$type <- "train"
+gender_age_all <- bind_rows(gender_age_train, gender_age_test)
+rm(gender_age_train, gender_age_test)
+gc()
 # 
 library(ggplot2)
 library(ggthemes)
@@ -41,14 +51,14 @@ events <- events%>%mutate(timestamp = ymd_hms(timestamp)
                           ,weekofday = weekdays(timestamp)
                           ,hour = hour(timestamp))
 
-events%>%ggplot()+geom_bar(aes(hour))
-events%>%group_by(hour)%>%summarise(n=.N)
+# 解析经纬度
+revgeocode()
 
-deviceid <- c('1805595054953645708')
-filter(events, device_id == deviceid)
-filter(gender_age_train, device_id == deviceid)
-filter(device_logintime, device_id == deviceid)
-filter(app_events, event_id == 3246084)
+# 查看不同deviceID对应的brand和
+phone_brand_device_ <- phone_brand_device%>%distinct()
+devicephone <- phone_brand_device_[,list(N=.N, 
+                                         devicemodels = paste0(device_model,collapse = ";"), 
+                                         devicebrands= paste0(phone_brand,collapse = ";")),keyby='device_id']
 
 
 
