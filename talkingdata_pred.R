@@ -111,4 +111,4 @@ ggmap(get_googlemap(center = 'china', zoom=4,maptype='terrain'),extent='device')
 # Feature1: isbusinessperson
 # Feature2: city citynum
 # Feature3: citymatch_genderAge
-# 
+#
