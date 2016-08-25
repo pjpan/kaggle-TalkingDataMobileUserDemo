@@ -7,7 +7,7 @@ library(maps)
 # app_events;
 cat("load data")
 app_events <- fread('./input/app_events.csv', integer64 = "character", nrows = 100000)  # the same event_id has muti app_id
-events <- fread('./input/events.csv', integer64 = "character", nrows = 100000) # event_id is unique
+events <- fread('./input/events.csv', integer64 = "character") # event_id is unique
 
 app_labels <- fread('./input/app_labels.csv', integer64 = "character", nrows = 100000)  # each app_id has it's unique label
 label_categories <- fread('./input/label_categories.csv', integer64 = "character") # ecah label has its unique category
@@ -92,6 +92,23 @@ ggmap(get_googlemap(center = 'china', zoom=4,maptype='terrain'),extent='device')
 # Feature1: isbusinessperson
 # Feature2: city citynum
 # Feature3: citymatch_genderAge
-# 
+# 获取出经纬度的地理位置信息
+events_lonlat <- events%>%filter(longtitude>0, latitude >0)%>%distinct()
+
+revgeocode(c(104,31), output = "address")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
