@@ -2,7 +2,10 @@ library(xgboost)
 library(dplyr)
 library(data.table)
 library(plotly)
-library(maps)
+library(ggplot2)
+library(ggthemes)
+library(lubridate)
+library(ggmap)
 
 # app_events;
 cat("load data")
@@ -34,10 +37,6 @@ gender_age_all <- bind_rows(gender_age_train, gender_age_test)
 rm(gender_age_train, gender_age_test)
 gc()
 # 
-library(ggplot2)
-library(ggthemes)
-library(lubridate)
-library(ggmap)
 ggplot()+geom_bar(aes(phone_brand_device$phone_brand))+theme_economist()
 # feature engineering
 cat("feature engineering")
@@ -65,7 +64,11 @@ qmplot(x = longitude,
        legend = "topleft", 
        darken = .2)
 
-events%>%group_by(device_id)%>%count()%>%arrange(desc(n))%>%head(10)
+events%>%
+  group_by(device_id)%>%
+  count()%>%
+  arrange(desc(n))%>%
+  head(10)
 
 # 查看一下各地的上网情况；
 events_piece <- filter(events, device_id == '-17299534936664237')
@@ -84,7 +87,6 @@ devicephone <- phone_brand_device_[,list(N=.N,
                                          devicebrands= paste0(phone_brand,collapse = ";")),keyby='device_id']
 
 # 查看不同的分布情况；
-library(ggmap)
 ggmap(get_googlemap(center = 'china', zoom=4,maptype='terrain'),extent='device')+
   geom_point(data=data, aes(x=lon,y=lan), colour = 'red', alpha=0.7)
 
@@ -93,8 +95,30 @@ ggmap(get_googlemap(center = 'china', zoom=4,maptype='terrain'),extent='device')
 # Feature2: city citynum
 # Feature3: citymatch_genderAge
 # 获取出经纬度的地理位置信息
-events_lonlat <- events%>%filter(longtitude>0, latitude >0)%>%distinct()
+# 单独拿出经纬度的信息来进行评估是哪个城市的；
+events_lonlat <- events%>%
+  filter(longitude>5, latitude >5)%>%
+  select(longitude, latitude)%>%
+  distinct()
 
-revgeocode(c(104,31), output = "address")
+# events_lonlat <- events_lonlat%>%
+#   mutate(address = revgeocode(c(longitude, latitude), output = "address"))
+
+# 采用 google的接口来进行查看；
+for(i in 2460:2461)
+{ 
+  cat('第几个记录', i)
+  events_lonlat$address[i] <- revgeocode(c(events_lonlat$longitude[i], events_lonlat$latitude[i]), output = "address")  
+}
+
+
+
+
+
+
+
+
+
+
 
 
