@@ -43,6 +43,9 @@ cat("feature engineering")
 device_logintime <- events[, .N, by = device_id]  # device login times 
 appid_category_group <- app_labels_detail[, .(action = paste0(category, collapse = ";")), by = app_id]
 
+appid_category_cnt <- app_labels_detail[, .N, by = list(app_id,category)]
+appid_category_cnt%>%head(10)
+
 # change timestamp to year,month,day,weekofday,hour
 events <- events%>%mutate(timestamp = ymd_hms(timestamp)
                           ,year = year(timestamp)
@@ -50,20 +53,7 @@ events <- events%>%mutate(timestamp = ymd_hms(timestamp)
                           ,day = day(timestamp)
                           ,weekofday = weekdays(timestamp)
                           ,hour = hour(timestamp))
-
-# 查看不同地区用户的访问情况；
-qmplot(x = longitude, 
-       y = latitude, 
-       data = events, 
-       zoom = 3, 
-       shape = I(15),
-       source = "google", 
-       maptype = "satellite", 
-       alpha = I(.75), 
-       color = I("green"), 
-       legend = "topleft", 
-       darken = .2)
-
+# sample
 events%>%
   group_by(device_id)%>%
   count()%>%
@@ -84,7 +74,7 @@ ggmap(get_googlemap(center = 'china', zoom=4, maptype='terrain'),extent='device'
 phone_brand_device_ <- phone_brand_device%>%distinct()
 devicephone <- phone_brand_device_[,list(N=.N, 
                                          devicemodels = paste0(device_model,collapse = ";"), 
-                                         devicebrands= paste0(phone_brand,collapse = ";")),keyby='device_id']
+                                         devicebrands= paste0(phone_brand,collapse = ";")), keyby='device_id']
 
 # 查看不同的分布情况；
 ggmap(get_googlemap(center = 'china', zoom=4,maptype='terrain'),extent='device')+
@@ -96,22 +86,14 @@ ggmap(get_googlemap(center = 'china', zoom=4,maptype='terrain'),extent='device')
 # Feature3: citymatch_genderAge
 # 获取出经纬度的地理位置信息
 # 单独拿出经纬度的信息来进行评估是哪个城市的；
-events_lonlat <- events%>%
-  filter(longitude>5, latitude >5)%>%
-  select(longitude, latitude)%>%
-  distinct()
 
 # events_lonlat <- events_lonlat%>%
 #   mutate(address = revgeocode(c(longitude, latitude), output = "address"))
-
-# 采用 google的接口来进行查看；
-for(i in 2460:2461)
-{ 
-  cat('第几个记录', i)
-  events_lonlat$address[i] <- revgeocode(c(events_lonlat$longitude[i], events_lonlat$latitude[i]), output = "address")  
-}
-
-
+allcategory <- app_labels_detail%>%
+  group_by(category)%>%
+  count(category)%>%
+  mutate(pct=n/sum(n))%>%
+  arrange(desc(pct))
 
 
 
