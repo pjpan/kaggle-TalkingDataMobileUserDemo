@@ -12,8 +12,6 @@ cat("load data")
 app_events <- fread('./input/app_events.csv', integer64 = "character", nrows = 100000)  # the same event_id has muti app_id
 events <- fread('./input/events.csv', integer64 = "character") # event_id is unique
 
-app_labels <- fread('./input/app_labels.csv', integer64 = "character", nrows = 100000)  # each app_id has it's unique label
-label_categories <- fread('./input/label_categories.csv', integer64 = "character") # ecah label has its unique category
 gender_age_train <- fread('./input/gender_age_train.csv', integer64 = "character")
 gender_age_test <- fread('./input/gender_age_test.csv', integer64 = "character", nrows = 100000)
 phone_brand_device <- fread('./input/phone_brand_device_model.csv', integer64 = "character", nrows = 100000)
@@ -71,9 +69,6 @@ ggmap(get_googlemap(center = 'china', zoom=4, maptype='terrain'),extent='device'
 
 # 查看不同deviceID对应的brand和models
 phone_brand_device_ <- phone_brand_device%>%distinct()
-devicephone <- phone_brand_device_[,list(N=.N, 
-                                         devicemodels = paste0(device_model,collapse = ";"), 
-                                         devicebrands= paste0(phone_brand,collapse = ";")), keyby='device_id']
 
 # 查看不同地区的分布情况；
 ggmap(get_googlemap(center = 'china', zoom=4,maptype='terrain'),extent='device')+
@@ -94,7 +89,11 @@ allcategory <- app_labels_detail%>%
   mutate(pct=n/sum(n))%>%
   arrange(desc(pct))
 
-
+pred <- predict(fit_xgb,dtest)
+pred_detail <- t(matrix(pred,nrow=length(group_name)))
+res_submit <- cbind(id=id[idx_test],as.data.frame(pred_detail))
+colnames(res_submit) <- c("device_id",group_name)
+write.csv(res_submit,file="submit_v0_7_1.csv",row.names=F,quote=F)
 
 
 
