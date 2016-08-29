@@ -47,9 +47,8 @@ appid_category_cnt <- app_labels_detail[, .N, by = list(app_id,category)]
 appid_category_cnt%>%head(10)
 
 # change timestamp to year,month,day,weekofday,hour
+# just 7days data,so the importance feature would be hour:
 events <- events%>%mutate(timestamp = ymd_hms(timestamp)
-                          ,year = year(timestamp)
-                          ,month = month(timestamp)
                           ,day = day(timestamp)
                           ,weekofday = weekdays(timestamp)
                           ,hour = hour(timestamp))
@@ -70,13 +69,13 @@ ggmap(get_googlemap(center = 'china', zoom=4, maptype='terrain'),extent='device'
   geom_point(data= events,aes(x= longitude, y= latitude),colour = 'blue',alpha=0.7)+
   ggtitle("所有用户的行动路径图")
 
-# 查看不同deviceID对应的brand和
+# 查看不同deviceID对应的brand和models
 phone_brand_device_ <- phone_brand_device%>%distinct()
 devicephone <- phone_brand_device_[,list(N=.N, 
                                          devicemodels = paste0(device_model,collapse = ";"), 
                                          devicebrands= paste0(phone_brand,collapse = ";")), keyby='device_id']
 
-# 查看不同的分布情况；
+# 查看不同地区的分布情况；
 ggmap(get_googlemap(center = 'china', zoom=4,maptype='terrain'),extent='device')+
   geom_point(data=data, aes(x=lon,y=lan), colour = 'red', alpha=0.7)
 

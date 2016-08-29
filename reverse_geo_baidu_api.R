@@ -48,8 +48,8 @@ saveRDS(events_lonlat, file = './input/events_lonlat.rds')
 #######  being  #########
 # 方法2： 利用google接口，不过有个限制，2500/天；
 # 采用 google的接口来进行查看；
-for(i in 1:2500) { 
-  cat('第几个记录', i)
-  events_lonlat$address[i] <- revgeocode(c(events_lonlat$longitude[i], events_lonlat$latitude[i]), output = "address")  
-}
+# for(i in 1:2500) { 
+#   cat('第几个记录', i)
+#   events_lonlat$address[i] <- revgeocode(c(events_lonlat$longitude[i], events_lonlat$latitude[i]), output = "address")  
+# }
 
