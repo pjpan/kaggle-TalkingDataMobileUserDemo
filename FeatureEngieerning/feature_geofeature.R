@@ -2,6 +2,14 @@ library(dplyr)
 library(data.table)
 library(tidyr)
 
+# 根据去过的地理位置的不同，区分出商务人士和一般家庭人员
+# Feature1: isbusinessperson
+# Feature2: city citynum
+# Feature3: citymatch_genderAge
+# 获取出经纬度的地理位置信息
+# 单独拿出经纬度的信息来进行评估是哪个城市的；
+
+
 print("load data")
 lonlat_match <- readRDS('./input/events_lonlat_city.rds')
 events <- readRDS('./input/events.rds')

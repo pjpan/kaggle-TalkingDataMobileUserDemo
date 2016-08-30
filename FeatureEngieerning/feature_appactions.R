@@ -111,7 +111,7 @@ deviceid_appid_category_total <- app_events_add_deviceid%>%
 deviceid_appid_active_pct <- deviceid_appid_category_total%>%
   select(device_id,is_active,pct)%>%
   spread(key = is_active, value = pct, fill =0)
-device_appid_active_pct%>%head(10)%>%View()
+deviceid_appid_active_pct%>%head(10)%>%View()
 
 # deviceid total appids
 # change isactive row to columns
@@ -135,5 +135,5 @@ saveRDS(app_events_add_deviceid, file = './input/app_events_add_deviceid.rds')
 saveRDS(deviceid_weekday_pct, file = './input/deviceid_weekday_pct.rds')
 saveRDS(deviceid_weekday_total, file = './input/deviceid_weekday_totalactions.rds')
 saveRDS(deviceid_appid_totalcounts, file = './input/deviceid_appid_totalcounts.rds')
-saveRDS(device_appid_active_pct, file = './input/device_appid_active_pct.rds')
-saveRDS(deviceid_appid_summary, file = './input/device_appid_summary.rds')
+saveRDS(deviceid_appid_active_pct, file = './input/deviceid_appid_active_pct.rds')
+saveRDS(deviceid_appid_summary, file = './input/deviceid_appid_summary.rds')
