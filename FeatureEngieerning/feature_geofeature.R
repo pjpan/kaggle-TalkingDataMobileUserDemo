@@ -2,6 +2,7 @@ library(dplyr)
 library(data.table)
 library(tidyr)
 
+
 print("load data")
 lonlat_match <- readRDS('./input/events_lonlat_city.rds')
 events <- readRDS('./input/events.rds')
