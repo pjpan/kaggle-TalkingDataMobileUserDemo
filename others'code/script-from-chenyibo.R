@@ -35,11 +35,13 @@ event_apps <- event_app[,list(apps=paste(unique(app_id),collapse=",")),by="event
 device_event_apps <- merge(events,event_apps,by="event_id")
 rm(events,event_app,event_apps);gc()
 
-f_split_paste <- function(z){paste(unique(unlist(strsplit(z,","))),collapse=",")}
-device_apps <- device_event_apps[,list(apps=f_split_paste(apps)),by="device_id"]
+f_split_paste <- function(z){paste(unique(unlist(strsplit(z,";"))),collapse=";")}
+device_apps <- app_events_add_deviceid[,list(apps=f_split_paste(category_collect)),by="device_id"]
 rm(device_event_apps,f_split_paste);gc()
 
-tmp <- strsplit(device_apps$apps,",")
+device_apps%>%head(10)
+
+tmp <- strsplit(device_apps$apps,";")
 device_apps <- data.table(device_id=rep(device_apps$device_id,
                                         times=sapply(tmp,length)),
                           app_id=unlist(tmp))

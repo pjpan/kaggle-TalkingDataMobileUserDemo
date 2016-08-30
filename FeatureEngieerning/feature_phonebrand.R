@@ -3,7 +3,7 @@ library(dplyr)
 library(tidyr)
 
 device_phone_brand <- readRDS('./input/phone_brand_device.rds')
-device_phonebrand <- phone_brand_device_[,list(N=.N, 
+device_phonebrand <- device_phone_brand[,list(N=.N, 
                                          devicemodels = paste0(device_model,collapse = ";"), 
                                          devicebrands= paste0(phone_brand,collapse = ";"),
                                          modelbrands = paste(phone_brand, device_model,collapse = ";", sep = ":")), keyby='device_id']

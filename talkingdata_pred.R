@@ -9,19 +9,7 @@ library(ggmap)
 
 # app_events;
 cat("load data")
-app_events <- fread('./input/app_events.csv', integer64 = "character", nrows = 100000)  # the same event_id has muti app_id
-events <- fread('./input/events.csv', integer64 = "character") # event_id is unique
 
-gender_age_train <- fread('./input/gender_age_train.csv', integer64 = "character")
-gender_age_test <- fread('./input/gender_age_test.csv', integer64 = "character", nrows = 100000)
-phone_brand_device <- fread('./input/phone_brand_device_model.csv', integer64 = "character", nrows = 100000)
-
-setkey(app_labels, label_id)
-setkey(label_categories, label_id)
-# combine applabel and label categories
-app_labels_detail <- as.data.table(left_join(app_labels, label_categories, copy = F))
-rm(app_labels, label_categories)
-gc()
 # app_label_detail the same app_id has tow label_id
 head(app_labels_detail, 1000)
 
@@ -50,29 +38,6 @@ events <- events%>%mutate(timestamp = ymd_hms(timestamp)
                           ,day = day(timestamp)
                           ,weekofday = weekdays(timestamp)
                           ,hour = hour(timestamp))
-# sample
-events%>%
-  group_by(device_id)%>%
-  count()%>%
-  arrange(desc(n))%>%
-  head(10)
-
-# 查看一下各地的上网情况；
-events_piece <- filter(events, device_id == '-17299534936664237')
-ggmap(get_googlemap(center = 'china', zoom=4, maptype='terrain'),extent='device')+
-  geom_point(data= events_piece,aes(x= longitude, y= latitude),colour = 'blue',alpha=0.7)
-
-# 查看所有设备的路径图
-ggmap(get_googlemap(center = 'china', zoom=4, maptype='terrain'),extent='device')+
-  geom_point(data= events,aes(x= longitude, y= latitude),colour = 'blue',alpha=0.7)+
-  ggtitle("所有用户的行动路径图")
-
-# 查看不同deviceID对应的brand和models
-phone_brand_device_ <- phone_brand_device%>%distinct()
-
-# 查看不同地区的分布情况；
-ggmap(get_googlemap(center = 'china', zoom=4,maptype='terrain'),extent='device')+
-  geom_point(data=data, aes(x=lon,y=lan), colour = 'red', alpha=0.7)
 
 # 根据去过的地理位置的不同，区分出商务人士和一般家庭人员
 # Feature1: isbusinessperson
