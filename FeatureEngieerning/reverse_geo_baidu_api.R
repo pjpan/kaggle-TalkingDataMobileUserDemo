@@ -15,7 +15,7 @@ events_lonlat <- events%>%
   distinct()
 
 # baidu API的AK，设置IP地址白名单为： *
-AK <- "h5nCTXjRSYCgnhntfOYxuTDRGLLGwB95"
+AK <- "xxxxxx"  # your baidu ak 
 
 # for(i in 12171:nrow(events_lonlat))
 for(i in 1:nrow(events_lonlat))

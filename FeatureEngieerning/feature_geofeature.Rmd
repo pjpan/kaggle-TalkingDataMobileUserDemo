@@ -1,0 +1,63 @@
+---
+title: "feature_geofeature"
+author: "ppj"
+date: "August 31, 2016"
+output: html_document
+---
+
+```{r}
+library(dplyr)
+library(data.table)
+library(tidyr)
+
+print("load data")
+lonlat_match <- readRDS('/Users/ppj/Documents/gitcode/kaggle-TalkingDataMobileUserDemo/input/events_lonlat_city.rds')
+lonlat_match%>%head(20)
+events <- readRDS('/Users/ppj/Documents/gitcode/kaggle-TalkingDataMobileUserDemo/input/events.rds')
+setkey(lonlat_match, longitude, latitude)
+setkey(events, longitude, latitude)
+events_addgeocity <- events[lonlat_match]
+
+# transform 
+events_addgeocity <- events_addgeocity%>%
+  filter(city!="")
+
+# device_id的城市数，常用的城市数，每个城市的次数；
+deviceid_city_counts <- events_addgeocity%>%
+  count(device_id, city)
+# head(deviceid_city_counts, 1000)%>%arrange(device_id)
+deviceid_city_times <- deviceid_city_counts%>%count(device_id)
+deviceid_city_times%>%head(10)
+# # top 200<91%>
+# cityNum <- events_addgeocity%>%
+#   count(city)%>%
+#   mutate(pct=n/sum(n))%>%
+#   arrange(desc(n))%>%
+#   mutate(cumpct=cumsum(pct))%>%head(200)
+
+# city from row to columns
+deviceid_city <- deviceid_city_counts%>%
+  spread(key = city, value = n, fill = 0)
+deviceid_city[,1:20]%>%head(10)
+# device_id的国家数量；
+deviceid_country_counts <- events_addgeocity%>%
+  distinct(device_id, country)%>%count(device_id, country)
+
+deviceid_country_times <- deviceid_country_counts%>%count(device_id)
+
+# city from row to columns
+deviceid_country <- deviceid_country_counts%>%
+  spread(key = country, value = n, fill = 0)
+deviceid_country%>%head(10)
+# district analysis
+deviceid_district_counts <- events_addgeocity%>%
+  filter(district!="")%>%
+  filter(country=="中国")%>%
+  distinct(device_id, district)%>%count(device_id, district)
+
+events_addgeocity%>%count(province)%>%arrange(desc(n))%>%head(10)
+# city from row to columns
+deviceid_district <- deviceid_district_counts%>%
+  spread(key = district, value = n, fill = 0)
+deviceid_district[,1:20]%>%head(10)
+```

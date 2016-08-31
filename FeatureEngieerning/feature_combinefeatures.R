@@ -75,7 +75,6 @@ gender_age_all_ <- dplyr::left_join(gender_age_all_, deviceid_brands_onehot, by 
 # save files
 # (186716, 3543)
 saveRDS(gender_age_all_, file = './input/gender_age_allfeatures.rds')
-names(gender_age_all_)
 
 
 
