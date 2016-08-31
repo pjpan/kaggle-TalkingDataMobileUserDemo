@@ -33,7 +33,8 @@ device_hour_pct_detail <- events_device_hour_detail[events_device_summary]%>%
 
 # convert row to columns
 device_hour_pct <- spread(device_hour_pct_detail, key = hour, value = pct, fill = 0)
-device_hour_pct%>%head(10)
+
+# device_hour_pct%>%head(10)
 
 # write rds
 saveRDS(device_hour_pct, file = './input/device_hour_pct.rds')

@@ -8,8 +8,6 @@ library(tidyr)
 # Feature3: citymatch_genderAge
 # 获取出经纬度的地理位置信息
 # 单独拿出经纬度的信息来进行评估是哪个城市的；
-
-
 print("load data")
 lonlat_match <- readRDS('./input/events_lonlat_city.rds')
 events <- readRDS('./input/events.rds')
@@ -19,14 +17,13 @@ events_addgeocity <- events[lonlat_match]
 
 # transform 
 events_addgeocity <- events_addgeocity%>%
-  mutate(city=="", "other", city)
-
-events_addgeocity%>%count(country)%>%View()
+  filter(city!="")
 
 # device_id的城市数，常用的城市数，每个城市的次数；
 deviceid_city_counts <- events_addgeocity%>%
   count(device_id, city)
 # head(deviceid_city_counts, 1000)%>%arrange(device_id)
+deviceid_city_times <- deviceid_city_counts%>%count(device_id)
 
 # # top 200<91%>
 # cityNum <- events_addgeocity%>%
@@ -42,6 +39,8 @@ deviceid_city <- deviceid_city_counts%>%
 # device_id的国家数量；
 deviceid_country_counts <- events_addgeocity%>%
   distinct(device_id, country)%>%count(device_id, country)
+
+deviceid_country_times <- deviceid_country_counts%>%count(device_id)
 
 # city from row to columns
 deviceid_country <- deviceid_country_counts%>%
@@ -59,8 +58,8 @@ deviceid_district <- deviceid_district_counts%>%
   spread(key = district, value = n, fill = 0)
 
 # save rds
-saveRDS(deviceid_city_counts, file = './input/deviceid_city_nums.rds')
-saveRDS(deviceid_country_counts, file = './input/deviceid_country_nums.rds')
+saveRDS(deviceid_city_times, file = './input/deviceid_city_times.rds')
+saveRDS(deviceid_country_times, file = './input/deviceid_country_times.rds')
 saveRDS(deviceid_city, file = './input/deviceid_city.rds')
 saveRDS(deviceid_country, file = './input/deviceid_country.rds')
 saveRDS(deviceid_district, file = './input/deviceid_district.rds')

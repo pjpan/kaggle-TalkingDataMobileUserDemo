@@ -19,8 +19,8 @@ devicebrands_selected <- device_phonebrand%>%
 # 只选取前35名的品牌名称；
 device_phonebrand <- device_phonebrand%>%
   mutate(devicebrands = ifelse(devicebrands%in% devicebrands_selected$devicebrands, devicebrands, '其他'))
-device_phonebrand%>%count(devicebrands)
-device_phonebrand%>%head(100)%>%View()
+# device_phonebrand%>%count(devicebrands)
+# device_phonebrand%>%head(100)%>%View()
 
 # row to columns
 names(device_phonebrand)
